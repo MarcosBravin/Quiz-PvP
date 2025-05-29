@@ -30,5 +30,5 @@ Funcionalidades principais estão sendo implementadas e testadas. Novas features
 
 ---
 
-Desenvolvido por [Sua Equipe/Empresa].
+Desenvolvido por BravinTech.
 "# Quiz-PvP" 
