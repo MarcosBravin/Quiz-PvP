@@ -90,12 +90,5 @@ Contribuições são bem-vindas! Siga as etapas abaixo para garantir um processo
 - Feedbacks são oportunidades de aprendizado e melhoria contínua.
 - Respeite e valorize as sugestões dos revisores.
 
-### 8️⃣ Comunicação
-
-- Para dúvidas, sugestões ou discussões, utilize as [Issues](https://github.com/seu-usuario/Quiz-PvP/issues).
-- Seja claro, objetivo e cordial na comunicação.
-
----
-
 Desenvolvido por Bravin Tech  
 "# Quiz-PvP"
