@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/admin.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <h1>Painel Administrativo</h1>
+            <ul>
+                <li><a href="/">🏠 Início</a></li>
+                <li><a href="/admin/dashboard">⚙️ Admin</a></li>
+                <li><a href="/logout" class="logout">🚪 Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Lista de Usuários</h2>
+        
+        <!-- Mensagens de Feedback -->
+        <% if (message) { %>
+            <p class="message"><%= message %></p>
+        <% } %>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Pontuação</th>
+                    <th>Status</th>
+                    <th>Cargo</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(user => { %>
+                    <tr>
+                        <td><%= user.name %></td>
+                        <td><%= user.email %></td>
+                        <td><%= user.score %></td>
+                        <td>
+                            <% if (user.isBanned) { %>
+                                <span class="banned">🚫 Banido</span>
+                            <% } else { %>
+                                <span class="active">🟢 Ativo</span>
+                            <% } %>
+                        </td>
+                        <td>
+                            <% if (user.role === "admin") { %>
+                                👑 Administrador
+                            <% } else if (user.role === "moderator") { %>
+                                🔧 Moderador
+                            <% } else { %>
+                                👤 Usuário
+                            <% } %>
+                        </td>
+                        <td class="actions">
+                            <!-- Botão de Banir/Desbanir -->
+                            <form action="/admin/<%= user.isBanned ? 'unban' : 'ban' %>/<%= user._id %>" method="POST">
+                                <button type="submit" class="<%= user.isBanned ? 'unban' : 'ban' %>">
+                                    <%= user.isBanned ? '🔓 Desbanir' : '🚫 Banir' %>
+                                </button>
+                            </form>
+
+                            <!-- Botão de Promoção (se não for admin) -->
+                            <% if (user.role !== "admin") { %>
+                                <form action="/admin/promote/<%= user._id %>" method="POST">
+                                    <button type="submit" class="promote">🔝 Promover</button>
+                                </form>
+                            <% } %>
+
+                            <!-- Botão de Rebaixamento (se não for user) -->
+                            <% if (user.role !== "user") { %>
+                                <form action="/admin/demote/<%= user._id %>" method="POST">
+                                    <button type="submit" class="demote">🔽 Rebaixar</button>
+                                </form>
+                            <% } %>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Quiz PvP - Todos os direitos reservados</p>
+    </footer>
+</body>
+</html>

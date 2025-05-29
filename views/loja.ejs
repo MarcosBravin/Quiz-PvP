@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja do Jogo</title>
+    <link rel="stylesheet" href="/loja.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <h1>🎮 Quiz PvP</h1>
+            <ul class="nav-links">
+                <% if (user) { %>
+                    <li class="user-name">Bem-vindo, <%= user.name.split(" ")[0] %>!</li>
+                    <input type="hidden" id="user-id" value="<%= user._id %>" />
+                <% } %>
+                <li><a href="/">🏠 Início</a></li>
+                <li><a href="/about">ℹ️ Sobre</a></li>
+                <li><a href="/ranking">🏆 Ranking</a></li>
+                <% if (!user) { %>
+                    <li><a href="/login">🔑 Login</a></li>
+                    <li><a href="/register">📝 Cadastro</a></li>
+                <% } else { %>
+                    <li><a href="/game">🎮 Jogar</a></li>
+                    <li><a href="/dashboard">👤 Meu Painel</a></li>
+                    <li><a href="/loja">🏪 Loja</a></li>
+                    <% if (user.role === "admin") { %>
+                        <li><a href="/admin/dashboard">⚙️ Admin</a></li>
+                    <% } %>
+                    <li><a href="/logout" class="logout">🚪 Sair</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <main>
+            <section class="loja">
+                <h2>Bem-vindo à Loja de Itens do Quiz</h2>
+                <p>Adquira itens especiais para melhorar sua performance no jogo!</p>
+        
+                <!-- Loja de Itens - Todos os itens agrupados -->
+                <div class="itens-loja">
+                    <div class="item">
+                        <img src="/img/dic.png" alt="Power-Up: Pergunta Extra">
+                        <h3>Pergunta Extra</h3>
+                        <p>Garante uma pergunta extra em qualquer rodada!</p>
+                        <span class="price">50 moedas</span>
+                        <button class="add-to-cart">Adicionar ao Carrinho</button>
+                    </div>
+        
+                    <div class="item">
+                        <img src="/img/power1.png" alt="Power-Up: Dica">
+                        <h3>Dica</h3>
+                        <p>Revele uma dica para responder corretamente!</p>
+                        <span class="price">30 moedas</span>
+                        <button class="add-to-cart">Adicionar ao Carrinho</button>
+                    </div>
+        
+                    <div class="item">
+                        <img src="/img/guer.png" alt="Skin: Guerreiro">
+                        <h3>Guerreiro</h3>
+                        <p>Personalize seu personagem com a skin Guerreiro!</p>
+                        <span class="price">100 moedas</span>
+                        <button class="add-to-cart">Adicionar ao Carrinho</button>
+                    </div>
+        
+                    <div class="item">
+                        <img src="/img/cust.png" alt="Skin: Mago">
+                        <h3>Mago</h3>
+                        <p>Transforme seu personagem em um Mago poderoso!</p>
+                        <span class="price">120 moedas</span>
+                        <button class="add-to-cart">Adicionar ao Carrinho</button>
+                    </div>
+        
+                    <div class="item">
+                        <img src="/img/danc.png" alt="Item: Emote Dança">
+                        <h3>Emote Dança</h3>
+                        <p>Adicione o emote de dança ao seu personagem!</p>
+                        <span class="price">25 moedas</span>
+                        <button class="add-to-cart">Adicionar ao Carrinho</button>
+                    </div>
+        
+                    <div class="item">
+                        <img src="/img/cust.png" alt="Item: Avatar Customizado">
+                        <h3>Avatar Customizado</h3>
+                        <p>Crie um avatar único para o seu perfil!</p>
+                        <span class="price">75 moedas</span>
+                        <button class="add-to-cart">Adicionar ao Carrinho</button>
+                    </div>
+        
+                    <div class="item">
+                        <img src="/img/hi.png" alt="Pacote: História">
+                        <h3>História</h3>
+                        <p>Adquira um pacote de perguntas sobre História!</p>
+                        <span class="price">150 moedas</span>
+                        <button class="add-to-cart">Adicionar ao Carrinho</button>
+                    </div>
+        
+                    <div class="item">
+                        <img src="/img/ge.png" alt="Pacote: Geografia">
+                        <h3>Geografia</h3>
+                        <p>Adquira um pacote de perguntas sobre Geografia!</p>
+                        <span class="price">150 moedas</span>
+                        <button class="add-to-cart">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+            </section>
+        
+            <!-- Carrinho de Compras -->
+            <section class="carrinho">
+                <h2>Carrinho de Compras</h2>
+                <ul id="itensCarrinho">
+                    <li>Seu carrinho está vazio.</li>
+                </ul>
+                <p>Total: <span id="totalCarrinho">0</span> moedas</p>
+                <button id="finalizarCompra" onclick="finalizarCompra()">Finalizar Compra</button>
+            </section>
+        </main>
+        
+
+    <footer>
+        <p>© 2025 Loja do Jogo. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="loja.js"></script>
+</body>
+</html>

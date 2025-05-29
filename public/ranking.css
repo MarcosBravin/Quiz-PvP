@@ -1,0 +1,154 @@
+/* Reset básico */
+body, h1, h2, p, ul, li, a {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Corpo da página */
+body {
+    background-color: #121212;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1e1e1e;
+    padding: 15px 20px;
+    border-radius: 8px;
+}
+
+.navbar h1 {
+    color: #facc15;
+    font-size: 24px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.navbar ul li {
+    display: inline;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.navbar a:hover {
+    background: #facc15;
+    color: #121212;
+}
+
+.user-name {
+    font-weight: bold;
+    color: #FFD700; /* Dourado */
+    padding: 3px 2px;
+    border-radius: 5px;
+}
+
+/* Ranking Container */
+.ranking-container {
+    margin-top: 20px;
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Animação de entrada */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Ranking List */
+.ranking-list {
+    list-style: none;
+    margin-top: 15px;
+    padding: 0;
+}
+
+/* Estilo do Card de Ranking */
+.ranking-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito hover nos cards */
+.ranking-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Cores dinâmicas para cada posição no ranking */
+.ranking-item:nth-child(1) { background: linear-gradient(135deg, #ffd700, #ffcc33); } /* Ouro */
+.ranking-item:nth-child(2) { background: linear-gradient(135deg, #c0c0c0, #b0b0b0); } /* Prata */
+.ranking-item:nth-child(3) { background: linear-gradient(135deg, #cd7f32, #b87333); } /* Bronze */
+.ranking-item:nth-child(n+4) { background: #333; } /* Demais posições */
+
+/* Ícones para os 3 primeiros colocados */
+.ranking-item:nth-child(1) .rank::before { content: "🏆"; margin-right: 5px; }
+.ranking-item:nth-child(2) .rank::before { content: "🥈"; margin-right: 5px; }
+.ranking-item:nth-child(3) .rank::before { content: "🥉"; margin-right: 5px; }
+
+/* Estilo do número do ranking */
+.rank {
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+}
+
+/* Nome do jogador */
+.player-name {
+    font-weight: bold;
+    flex-grow: 1;
+    text-align: left;
+    padding-left: 10px;
+    color: #000000;
+}
+
+/* Pontuação do jogador */
+.player-score {
+    font-style: italic;
+    color: #000000;
+}
+
+/* Mensagem caso não haja ranking */
+.no-ranking {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #facc15;
+}
+
+/* Rodapé */
+footer {
+    margin-top: 20px;
+    padding: 15px;
+    background: #1e1e1e;
+    border-radius: 8px;
+}

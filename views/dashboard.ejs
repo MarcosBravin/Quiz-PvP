@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Jogador</title>
+    <link rel="stylesheet" href="/dashboard.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <h1>🎮 Quiz PvP</h1>
+            <ul>
+                <% if (user) { %>
+                    <li class="user-name">Bem-vindo, <%= user.name.split(" ")[0] %>!</li>
+                    <input type="hidden" id="user-id" value="<%= user._id %>" /> <!-- Adicionando o userId -->
+                <% } %>
+                <li><a href="/">🏠 Início</a></li>
+                <li><a href="/about">ℹ️ Sobre</a></li>
+                <li><a href="/ranking">🏆 Ranking</a></li>
+                <% if (!user) { %>
+                    <li><a href="/login">🔑 Login</a></li>
+                    <li><a href="/register">📝 Cadastro</a></li>
+                <% } else { %>
+                    <li><a href="/game">🎮 Jogar</a></li>
+                    <li><a href="/dashboard">👤 Meu Painel</a></li>
+                    <% if (user.role === "admin") { %>
+                        <li><a href="/admin/dashboard">⚙️ Admin</a></li>
+                    <% } %>
+                    <li><a href="/logout" class="logout">🚪 Sair</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+        <section class="player-info">
+            <div class="avatar-container">
+                <label for="avatarInput" class="avatar-label">
+                    <div class="avatar-preview">
+                        <img id="avatarImg" src="<%= user.avatar %>" alt="Avatar do Jogador">
+                    </div>
+                    <span class="avatar-text">Clique para alterar a foto</span>
+                    <input type="file" id="avatarInput" name="avatar" accept="image/*" hidden>
+                </label>
+            
+                <!-- Botão de upload que só aparece depois de selecionar uma imagem -->
+                <form id="avatarForm" action="/update-avatar" method="POST" enctype="multipart/form-data">
+                    <button type="submit" class="btn-upload" id="uploadBtn" style="display: none;">Salvar Avatar</button>
+                </form>
+            </div>
+            
+            <h2>👤 Bem-vindo, <%= user.name %>!</h2>
+            <p><strong>Email:</strong> <%= user.email %></p>
+            <p><strong>Pontuação:</strong> <span class="score"><%= user.score %> pontos</span></p>
+            
+            <div class="buttons">
+                <a href="/game" class="btn primary">🎮 Jogar Agora</a>
+                <a href="/ranking" class="btn secondary">📊 Ver Ranking</a>
+            </div>
+        </section>
+
+        <!--  organizar os cards mv-->
+        <section class="dashboard-grid">
+            <div class="card">
+                <h3>📊 Histórico de Partidas</h3>
+                <% if (user.history && user.history.length > 0) { %>
+                    <ul>
+                        <% user.history.forEach((match, index) => { %>
+                            <li>🎮 Partida <%= index + 1 %> - Pontos: <%= match.points %> (<%= match.date %>)</li>
+                        <% }); %>
+                    </ul>
+                <% } else { %>
+                    <p>Você ainda não jogou nenhuma partida.</p>
+                <% } %>
+            </div>
+
+            <div class="card">
+                <h3>🏅 Suas Conquistas</h3>
+                <% if (user.score >= 100) { %>
+                    <p>🥇 Mestre do Quiz - 100 pontos</p>
+                <% } %>
+                <% if (user.score >= 200) { %>
+                    <p>🏆 Lenda do Quiz - 200 pontos</p>
+                <% } %>
+                <% if (user.score < 100) { %>
+                    <p>📢 Continue jogando para desbloquear conquistas!</p>
+                <% } %>
+            </div>
+
+            <div class="card">
+                <h3>🔔 Notificações</h3>
+                <p>📢 Novo evento especial: Quiz Relâmpago! Participe agora.</p>
+            </div>
+        </section>
+    </main>
+<!-- Modal -->
+<div id="customModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <p id="modalMessage"></p>
+    </div>
+  </div>
+  
+    <footer>
+        <p>&copy; 2025 Quiz PvP - Todos os direitos reservados</p>
+    </footer>
+    <script src="/avatar.js"></script>
+</body>
+</html>

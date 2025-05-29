@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title || "Sobre Nós - Quiz PvP" %></title>
+    <link rel="stylesheet" href="/about.css">
+    <script defer src="/menu.js"></script> <!-- JavaScript para menu responsivo -->
+</head>
+<body>
+    <!-- Navbar responsiva -->
+    <header>
+        <nav class="navbar">
+            <h1>🎮 Quiz PvP</h1>
+            <ul>
+                <% if (user) { %>
+                    <li class="user-name">Bem-vindo, <%= user.name.split(" ")[0] %>!</li>
+                    <input type="hidden" id="user-id" value="<%= user._id %>" /> <!-- Adicionando o userId -->
+                <% } %>
+                <li><a href="/">🏠 Início</a></li>
+                <li><a href="/about">ℹ️ Sobre</a></li>
+                <li><a href="/ranking">🏆 Ranking</a></li>
+                <% if (!user) { %>
+                    <li><a href="/login">🔑 Login</a></li>
+                    <li><a href="/register">📝 Cadastro</a></li>
+                <% } else { %>
+                    <li><a href="/game">🎮 Jogar</a></li>
+                    <li><a href="/dashboard">👤 Meu Painel</a></li>
+                    <% if (user.role === "admin") { %>
+                        <li><a href="/admin/dashboard">⚙️ Admin</a></li>
+                    <% } %>
+                    <li><a href="/logout" class="logout">🚪 Sair</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Seção Sobre -->
+    <main>
+        <section class="about-container">
+            <h2>ℹ️ Sobre o Quiz PvP</h2>
+            <p>
+                O <strong>Quiz PvP</strong> é um jogo de perguntas e respostas onde você pode testar seus conhecimentos e competir contra outros jogadores!
+                A cada vitória, você sobe no ranking e mostra quem é o melhor!
+            </p>
+
+            <h3>🚀 Recursos do Jogo</h3>
+            <ul class="features-list">
+                <li>✅ Perguntas variadas de múltiplas categorias</li>
+                <li>✅ Sistema de ranking com pontuações</li>
+                <li>✅ Modo multiplayer para desafiar amigos</li>
+                <li>✅ Interface moderna e responsiva</li>
+            </ul>
+
+            <h3>📢 Nossa Missão</h3>
+            <p>
+                Criar uma experiência divertida e educativa para jogadores de todas as idades, promovendo aprendizado e desafios interativos!
+            </p>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2025 Quiz PvP - Todos os direitos reservados</p>
+    </footer>
+</body>
+</html>

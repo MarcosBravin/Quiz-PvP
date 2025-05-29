@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz PvP</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <h1>🎮 Quiz PvP</h1>
+            <ul>
+                <% if (user) { %>
+                    <li class="user-name">Bem-vindo, <%= user.name.split(" ")[0] %>!</li>
+                    <input type="hidden" id="user-id" value="<%= user._id %>" /> <!-- Adicionando o userId -->
+                <% } %>
+                <li><a href="/">🏠 Início</a></li>
+                <li><a href="/about">ℹ️ Sobre</a></li>
+                <li><a href="/ranking">🏆 Ranking</a></li>
+                <% if (!user) { %>
+                    <li><a href="/login">🔑 Login</a></li>
+                    <li><a href="/register">📝 Cadastro</a></li>
+                <% } else { %>
+                    <li><a href="/game">🎮 Jogar</a></li>
+                    <li><a href="/dashboard">👤 Meu Painel</a></li>
+                    <li><a href="/loja">🏪 Loja</a></li>
+                    <% if (user.role === "admin") { %>
+                        <li><a href="/admin/dashboard">⚙️ Admin</a></li>
+                    <% } %>
+                    <li><a href="/logout" class="logout">🚪 Sair</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="info">
+            <h2>🔥 Bem-vindo ao Quiz PvP!</h2>
+            <p>Teste seus conhecimentos contra outros jogadores e suba no ranking!</p>
+
+            <% if (!user) { %>
+                <p><strong>Cadastre-se agora para começar a jogar!</strong></p>
+                <a href="/register" class="btn primary">Cadastrar</a>
+                <a href="/login" class="btn secondary">Fazer Login</a>
+            <% } else { %>
+                <p><strong>Olá, <%= user.name %>! Vamos jogar?</strong></p>
+                <a href="#" class="btn primary" onclick="joinQueue()">🎮 Iniciar Jogo</a>
+                <a href="/dashboard" class="btn secondary">📊 Meu Painel</a>
+            <% } %>
+        </section>
+    </main>
+
+    <!-- Modal de Matchmaking -->
+    <div id="matchmakingModal" class="modal">
+        <div class="modal-content">
+            <h2>🎮 Matchmaking</h2>
+            <p id="matchmakingStatus">Procurando oponente...</p>
+            <button class="btn secondary" onclick="document.getElementById('matchmakingModal').style.display='none'">Cancelar</button>
+        </div>
+    </div>
+<!-- Modal de Início de Partida -->
+<div id="gameStartModal" style="display:none;" class="modal">
+    <div class="modal-content">
+        <h2>Início da Partida</h2>
+        <div class="players-info">
+            <div class="player">
+                <img id="player1Avatar" src="" alt="Foto do Jogador 1" />
+                <p id="player1">Jogador 1</p>
+            </div>
+            <div class="player">
+                <img id="player2Avatar" src="" alt="Foto do Jogador 2" />
+                <p id="player2">Jogador 2</p>
+            </div>
+        </div>
+        
+        <!-- Nova área para o Quiz -->
+        <div id="quizDesign" class="quiz-design">
+            <h2>Pergunta do Quiz</h2>
+            <p id="quizQuestionPlaceholder">Aqui será exibida a pergunta do quiz</p>
+            <div class="quiz-options">
+                <button>Opção A</button>
+                <button>Opção B</button>
+                <button>Opção C</button>
+                <button>Opção D</button>
+            </div>
+        </div>
+        
+        <!-- Botões do modal -->
+        <div class="modal-actions">
+            <button onclick="startGame()">Iniciar Jogo</button>
+            <button onclick="closeModal()">Fechar</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="index.js"></script>
+
+    <footer>
+        <p>&copy; 2025 Quiz PvP - Todos os direitos reservados</p>
+    </footer>
+</body>
+</html>

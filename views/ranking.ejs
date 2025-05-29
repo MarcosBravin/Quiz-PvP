@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title || "Ranking - Quiz PvP" %></title>
+    <link rel="stylesheet" href="/ranking.css">
+</head>
+<body>
+    <!-- Navbar fixa no topo -->
+    <header>
+        <nav class="navbar">
+            <h1>🎮 Quiz PvP</h1>
+            <ul>
+                <% if (user) { %>
+                    <li class="user-name">Bem-vindo, <%= user.name.split(" ")[0] %>!</li>
+                    <input type="hidden" id="user-id" value="<%= user._id %>" /> <!-- Adicionando o userId -->
+                <% } %>
+                <li><a href="/">🏠 Início</a></li>
+                <li><a href="/about">ℹ️ Sobre</a></li>
+                <li><a href="/ranking">🏆 Ranking</a></li>
+                <% if (!user) { %>
+                    <li><a href="/login">🔑 Login</a></li>
+                    <li><a href="/register">📝 Cadastro</a></li>
+                <% } else { %>
+                    <li><a href="/game">🎮 Jogar</a></li>
+                    <li><a href="/dashboard">👤 Meu Painel</a></li>
+                    <% if (user.role === "admin") { %>
+                        <li><a href="/admin/dashboard">⚙️ Admin</a></li>
+                    <% } %>
+                    <li><a href="/logout" class="logout">🚪 Sair</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </header>
+    <!-- Ranking principal -->
+    <main>
+        <section class="ranking-container">
+            <h2>🔥 Top 10 Jogadores</h2>
+    
+            <% if (users && users.length > 0) { %>
+                <ul class="ranking-list">
+                    <% users.forEach((user, index) => { %>
+                        <li class="ranking-item">
+                            <span class="rank">#<%= index + 1 %></span> 
+                            <strong class="player-name"><%= user.name %></strong> 
+                            <span class="player-score"><%= user.score.toLocaleString("pt-BR") %> pontos</span>
+                        </li>
+                    <% }); %>
+                </ul>
+            <% } else { %>
+                <p class="no-ranking">Ainda não há jogadores no ranking.</p>
+            <% } %>
+        </section>
+    </main>
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2025 Quiz PvP - Todos os direitos reservados</p>
+    </footer>
+</body>
+</html>

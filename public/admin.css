@@ -1,0 +1,183 @@
+/* ======= RESET GERAL ======= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* ======= BODY E LAYOUT ======= */
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    text-align: center;
+}
+
+header {
+    background-color: #222;
+    padding: 15px 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.navbar h1 {
+    color: #fff;
+    font-size: 24px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+}
+
+.navbar ul li {
+    margin-left: 20px;
+}
+
+.navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.logout {
+    color: #ff4d4d;
+    font-weight: bold;
+}
+
+main {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+/* ======= MENSAGENS ======= */
+.message {
+    background: #dff0d8;
+    color: #3c763d;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+/* ======= TABELA ======= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+
+thead {
+    background: #222;
+    color: #fff;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+/* ======= STATUS ======= */
+.banned {
+    color: #ff4d4d;
+    font-weight: bold;
+}
+
+.active {
+    color: #28a745;
+    font-weight: bold;
+}
+
+/* ======= BOTÕES ======= */
+.actions {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+button {
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+/* ======= ESTILOS ESPECÍFICOS PARA BOTÕES ======= */
+.ban {
+    background: #ff4d4d;
+    color: white;
+}
+
+.unban {
+    background: #28a745;
+    color: white;
+}
+
+.promote {
+    background: #007bff;
+    color: white;
+}
+
+.demote {
+    background: #f39c12;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* ======= RESPONSIVIDADE ======= */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .navbar ul {
+        margin-top: 10px;
+        padding: 0;
+    }
+
+    .navbar ul li {
+        margin: 5px 0;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+}

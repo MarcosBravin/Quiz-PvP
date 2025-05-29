@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PVP Quiz</title>
+  <link rel="stylesheet" href="/pvp-quiz.css">
+</head>
+<body>
+
+  <div class="pvp-container">
+    <div class="players-info">
+      <div class="player player-1">
+        <img id="player1-photo" src="/default-avatar.png" alt="Jogador 1" class="player-photo">
+        <div class="player-details">
+          <p id="player1-name" class="player-name">Jogador 1</p>
+          <p id="player1-points" class="player-points">Pontos: 10</p>
+        </div>
+      </div>
+      <div class="player-vs">
+        <span class="vs-text">VS</span>
+      </div>
+      <div class="player player-2">
+        <img id="player2-photo" src="/default-avatar.png" alt="Jogador 2" class="player-photo">
+        <div class="player-details">
+          <p id="player2-name" class="player-name">Jogador 2</p>
+          <p id="player2-points" class="player-points">Pontos: 8</p>
+        </div>
+      </div>
+    </div>
+    <button id="joinQueueButton">Entrar na Fila PvP</button>
+
+    <div class="quiz-question">
+      <h2>Qual é a capital da França?</h2>
+      <div class="options">
+        <button class="option">Paris</button>
+        <button class="option">Londres</button>
+        <button class="option">Roma</button>
+        <button class="option">Berlim</button>
+      </div>
+    </div>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="pvp-quiz.js"></script>
+</body>
+</html>

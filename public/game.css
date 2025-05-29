@@ -1,0 +1,159 @@
+/* Resetando margens e paddings para um visual mais controlado */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f7f7f7;
+    text-align: center;
+    color: #333;
+    padding: 0;
+    margin: 0;
+}
+
+/* Barra de navegação */
+.navbar {
+    background-color: #222;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navbar h1 {
+    font-size: 24px;
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.navbar ul {
+    list-style: none;
+    display: inline-block;
+    margin-left: 20px;
+    padding: 0;
+}
+
+.navbar ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    color: #007bff;
+}
+
+/* Estilos principais do jogo */
+.main {
+    background-color: #f4f4f4;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#question-container {
+    margin-bottom: 30px;
+}
+
+#question-text {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.options {
+    list-style: none;
+    padding: 0;
+}
+
+.option-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 8px 0;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.3s ease;
+}
+
+.option-btn:hover {
+    background: #0056b3;
+}
+
+.option-btn:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+.correct {
+    background-color: #28a745 !important;
+}
+
+.incorrect {
+    background-color: #dc3545 !important;
+}
+
+#score {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #555;
+}
+
+/* Rodapé */
+footer {
+    padding: 10px;
+    background-color: #222;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+/* Adicionando animação no carregamento da pergunta */
+#question-text {
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

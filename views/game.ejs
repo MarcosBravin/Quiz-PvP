@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/game.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <h1>🎮 Quiz PvP</h1>
+            <ul>
+                <li><a href="/">🏠 Início</a></li>
+                <li><a href="/ranking">🏆 Ranking</a></li>
+                <% if (user) { %>
+                    <li><a href="/game">🎮 Jogar</a></li>
+                    <li><a href="/dashboard">👤 Meu Painel</a></li>
+                    <% if (role === "admin") { %>
+                        <li><a href="/admin/dashboard">⚙️ Admin</a></li>
+                    <% } %>
+                    <li><a href="/logout" class="logout">🚪 Sair</a></li>
+                <% } else { %>
+                    <li><a href="/login">🔑 Login</a></li>
+                    <li><a href="/register">📝 Cadastro</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="quiz">
+            <h2>🔥 Quiz PvP - Responda as perguntas!</h2>
+            <p id="timer">⏳ Tempo: <span id="time-left">10</span>s</p>
+            <div id="question-container">
+                <p id="question-text">Carregando pergunta...</p>
+                <ul id="options" class="options"></ul>
+            </div>
+            <p id="score">Pontuação: <span><%= user.score %></span></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Quiz PvP - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="/game.js"></script>
+</body>
+</html>
